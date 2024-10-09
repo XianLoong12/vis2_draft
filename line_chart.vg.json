@@ -11,6 +11,13 @@
         "type": "line",
         "point": true
     },
+    "params": [
+        {
+            "name": "selectedState",
+            "select": {"type": "point", "fields": ["state"]},
+            "bind": "legend"
+        }
+    ],
     "encoding": {
         "x": {
             "field": "date",
@@ -27,6 +34,10 @@
             "type": "nominal",
             "scale": {"scheme": "Set2"},
             "legend": {"title": "State"}
+        },
+        "opacity": {
+            "condition": {"param": "selectedState", "value": 1},
+            "value": 0.1
         },
         "tooltip": [
             {"field": "state", "type": "nominal", "title": "State"},

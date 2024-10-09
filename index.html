@@ -70,6 +70,8 @@
     <div id="map" class="visualization"></div>
     <div id="stacked_bar_chart" class="visualization"></div>
     <div id="heatmap" class="visualization"></div>
+    <div id="diverging_stacked_bar" class="visualization"></div>
+    <div id="streamgraph" class="visualization"></div>
   </div>
 
   <script type="text/javascript">
@@ -78,12 +80,16 @@
     const spec2 = "vis2_map.vg.json";
     const spec3 = "stackedbarchart.vg.json";
     const spec4 = "heat.vg.json";
+    const spec5 = "diverging_stacked_bar.vg.json";
+    const spec6 = "streamgraph.vg.json";
 
     // Embed each visualization in its respective div
     vegaEmbed('#line_chart', spec1).then(result => {}).catch(console.error);
     vegaEmbed('#map', spec2).then(result => {}).catch(console.error);
     vegaEmbed('#stacked_bar_chart', spec3).then(result => {}).catch(console.error);
     vegaEmbed('#heatmap', spec4).then(result => {}).catch(console.error);
+    vegaEmbed('#diverging_stacked_bar', spec5).then(result => {}).catch(console.error);
+    vegaEmbed('#streamgraph', spec6).then(result => {}).catch(console.error);
   </script>
 </body>
 </html>

@@ -1,0 +1,78 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Streamgraph of Number of Births by State in Malaysia",
+    "data": {
+        "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/birth_sex_ethnic_state.csv",
+        "format": {"type": "csv"}
+    },
+    "transform": [
+        {
+            "filter": "datum.sex == 'both' || datum.sex == selectedSex"
+        }
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "date",
+            "type": "temporal",
+            "timeUnit": "year",
+            "axis": {
+                "domain": false,
+                "format": "%Y",
+                "title": "Year",
+                "tickSize": 0
+            }
+        },
+        "y": {
+            "aggregate": "sum",
+            "field": "abs",
+            "type": "quantitative",
+            "stack": "center",
+            "axis": {
+                "title": "Number of Births",
+                "grid": false,
+                "labelExpr": "datum.value / 1000 + 'k'"
+            }
+        },
+        "color": {
+            "field": "state",
+            "type": "nominal",
+            "scale": {"scheme": "category20b"},
+            "legend": {"title": "State"}
+        },
+        "opacity": {
+            "condition": {"param": "selectedState", "value": 1},
+            "value": 0.2
+        },
+        "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "date", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "abs", "type": "quantitative", "aggregate": "sum", "title": "Number of Births"}
+        ]
+    },
+    "params": [
+        {
+            "name": "selectedSex",
+            "value": "both",
+            "bind": {
+                "input": "select",
+                "options": ["both", "female", "male"],
+                "labels": ["Both", "Female", "Male"],
+                "name": "Gender: "
+            }
+        },
+        {
+            "name": "selectedState",
+            "select": {"type": "point", "fields": ["state"]},
+            "bind": "legend"
+        }
+    ],
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}
