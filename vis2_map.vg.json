@@ -18,12 +18,13 @@
         }
     ],
     "data": {
-        "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
+        "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/Wide_Format_Birth_Data.csv",
         "format": {"type": "csv"}
     },
     "transform": [
         {
-            "filter": "datum.date == Year_Selection"
+            "calculate": "datum[Year_Selection]",
+            "as": "selected_year_value"
         }
     ],
     "layer": [
@@ -38,17 +39,17 @@
                     "lookup": "properties.NAME_1",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
+                            "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/Wide_Format_Birth_Data.csv",
                             "format": {"type": "csv"}
                         },
                         "key": "state",
-                        "fields": ["abs", "date"]
+                        "fields": ["selected_year_value"]
                     }
                 }
             ],
             "encoding": {
                 "color": {
-                    "field": "abs",
+                    "field": "selected_year_value",
                     "type": "quantitative",
                     "scale": {
                         "type": "threshold",
@@ -62,8 +63,8 @@
                 },
                 "tooltip": [
                     {"field": "properties.NAME_1", "type": "nominal", "title": "State"},
-                    {"field": "abs", "type": "quantitative", "title": "Number of Births"},
-                    {"field": "date", "type": "ordinal", "title": "Year"}
+                    {"field": "selected_year_value", "type": "quantitative", "title": "Number of Births"},
+                    {"field": "Year_Selection", "type": "ordinal", "title": "Year"}
                 ]
             }
         }
