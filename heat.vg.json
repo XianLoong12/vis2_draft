@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Number of Births by State in Malaysia (Heatmap)",
+    "data": {
+        "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
+        "format": {"type": "csv"}
+    },
+    "mark": "rect",
+    "encoding": {
+        "x": {
+            "field": "date",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {"labelAngle": 0}
+        },
+        "y": {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+        },
+        "color": {
+            "field": "abs",
+            "type": "quantitative",
+            "title": "Number of Births",
+            "scale": {"scheme": "blues"}
+        },
+        "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "date", "type": "ordinal", "title": "Year"},
+            {"field": "abs", "type": "quantitative", "title": "Number of Births"}
+        ]
+    }
+}
