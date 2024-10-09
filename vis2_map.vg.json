@@ -44,9 +44,6 @@
                         "key": "state",
                         "fields": ["abs", "date"]
                     }
-                },
-                {
-                    "filter": "datum.date == 2020"
                 }
             ],
             "encoding": {
