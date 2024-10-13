@@ -54,6 +54,12 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+    /* New grid layout for heatmap and diverging bar chart */
+    .side-by-side {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns for side-by-side layout */
+      gap: 20px; /* Space between the heatmap and diverging bar chart */
+    }
   </style>
 </head>
 <body>
@@ -69,8 +75,13 @@
     <div id="line_chart" class="visualization"></div>
     <div id="map" class="visualization"></div>
     <div id="stacked_bar_chart" class="visualization"></div>
-    <div id="heatmap" class="visualization"></div>
-    <div id="diverging_stacked_bar" class="visualization"></div>
+
+    <!-- Container for heatmap and diverging bar chart placed side by side -->
+    <div class="side-by-side">
+      <div id="heatmap" class="visualization"></div>
+      <div id="diverging_stacked_bar" class="visualization"></div>
+    </div>
+
     <div id="streamgraph" class="visualization"></div>
   </div>
 

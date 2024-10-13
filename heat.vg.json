@@ -1,35 +1,65 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
+    "width": 500,
     "height": 450,
     "title": "Number of Births by State in Malaysia (Heatmap)",
     "data": {
-        "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
-        "format": {"type": "csv"}
+      "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
+      "format": {"type": "csv"}
     },
+    "transform": [
+      {
+        "filter": "datum.date >= Min_Year && datum.date <= Max_Year"
+      }
+    ],
+    "params": [
+      {
+        "name": "Min_Year",
+        "value": 2000,
+        "bind": {
+          "input": "range",
+          "min": 2000,
+          "max": 2022,
+          "step": 1,
+          "name": "Select Min Year: "
+        }
+      },
+      {
+        "name": "Max_Year",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 2000,
+          "max": 2022,
+          "step": 1,
+          "name": "Select Max Year: "
+        }
+      }
+    ],
     "mark": "rect",
     "encoding": {
-        "x": {
-            "field": "date",
-            "type": "ordinal",
-            "title": "Year",
-            "axis": {"labelAngle": 0}
-        },
-        "y": {
-            "field": "state",
-            "type": "nominal",
-            "title": "State"
-        },
-        "color": {
-            "field": "abs",
-            "type": "quantitative",
-            "title": "Number of Births",
-            "scale": {"scheme": "blues"}
-        },
-        "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "date", "type": "ordinal", "title": "Year"},
-            {"field": "abs", "type": "quantitative", "title": "Number of Births"}
-        ]
+      "x": {
+        "field": "date",
+        "type": "ordinal",
+        "title": "Year",
+        "axis": {"labelAngle": 0}
+      },
+      "y": {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      "color": {
+        "field": "abs",
+        "type": "quantitative",
+        "title": "Number of Births",
+        "scale": {"scheme": "blues"}
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "date", "type": "ordinal", "title": "Year"},
+        {"field": "abs", "type": "quantitative", "title": "Number of Births"}
+      ]
     }
-}
+  }
+  

@@ -32,7 +32,14 @@
         "color": {
             "field": "state",
             "type": "nominal",
-            "scale": {"scheme": "Set2"},
+            "scale": {
+                "range": [
+                    "#88CCEE", "#CC6677", "#DDCC77", "#117733",
+                    "#332288", "#AA4499", "#44AA99", "#999933",
+                    "#882255", "#661100", "#6699CC", "#888888",
+                    "#E69F00", "#56B4E9", "#009E73", "#F0E442"
+                ]
+            },
             "legend": {"title": "State"}
         },
         "opacity": {
