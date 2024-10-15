@@ -2,10 +2,13 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 800,
     "height": 450,
-    "title": "Birth Rate per 1,000 People for each State in Malaysia",
+    "title": {
+        "text": "Birth Rate per 1,000 People for each State in Malaysia",
+        "fontSize": 24  
+      },  
     "projection": {"type": "equalEarth"},
     "data": {
-        "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/gadm41_MYS_1.json",
+        "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/gadm41_MYS_1.json",
         "format": {"type": "topojson", "feature": "gadm41_MYS_1"}
     },
     "transform": [
@@ -54,7 +57,7 @@
             },
             "legend": {
                 "title": "Birth Rate per 1,000 People",
-                "orient": "bottom-right"
+                "orient": "right" 
             }
         },
         "tooltip": [

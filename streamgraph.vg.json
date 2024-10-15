@@ -2,7 +2,10 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 800,
     "height": 450,
-    "title": "Streamgraph of Number of Births by State in Malaysia",
+    "title": {
+        "text": "Cumulative Births by State in Malaysia",
+        "fontSize": 24  
+      }, 
     "data": {
         "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/birth_sex_ethnic_state.csv",
         "format": {"type": "csv"}
@@ -22,7 +25,9 @@
                 "domain": false,
                 "format": "%Y",
                 "title": "Year",
-                "tickSize": 0
+                "tickSize": 0,
+                "labelFontSize": 14, 
+                "titleFontSize": 16  
             }
         },
         "y": {
@@ -33,13 +38,22 @@
             "axis": {
                 "title": "Number of Births",
                 "grid": false,
-                "labelExpr": "datum.value / 1000 + 'k'"
+                "labelExpr": "datum.value / 1000 + 'k'",
+                "labelFontSize": 14, 
+                "titleFontSize": 16  
             }
         },
         "color": {
             "field": "state",
             "type": "nominal",
-            "scale": {"scheme": "category20b"},
+            "scale": {
+                "range": [
+                    "#88CCEE", "#CC6677", "#DDCC77", "#117733",
+                    "#332288", "#AA4499", "#44AA99", "#999933",
+                    "#882255", "#661100", "#6699CC", "#888888",
+                    "#E69F00", "#56B4E9", "#009E73", "#F0E442"
+                ]
+            },
             "legend": {"title": "State"}
         },
         "opacity": {

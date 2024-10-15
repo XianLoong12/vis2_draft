@@ -1,8 +1,11 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 500,
+    "width": 400,
     "height": 450,
-    "title": "Number of Births by State in Malaysia (Heatmap)",
+    "title": {
+        "text": "Birth Trends Across Malaysian States",
+        "fontSize": 24  
+      },  
     "data": {
       "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
       "format": {"type": "csv"}
@@ -15,7 +18,7 @@
     "params": [
       {
         "name": "Min_Year",
-        "value": 2000,
+        "value": 2015,
         "bind": {
           "input": "range",
           "min": 2000,
@@ -42,12 +45,20 @@
         "field": "date",
         "type": "ordinal",
         "title": "Year",
-        "axis": {"labelAngle": 0}
+        "axis": {
+          "labelAngle": 0,
+          "labelFontSize": 14, 
+          "titleFontSize": 16  
+        }
       },
       "y": {
         "field": "state",
         "type": "nominal",
-        "title": "State"
+        "title": "State",
+        "axis": {
+          "labelFontSize": 14,  
+          "titleFontSize": 16  
+        }
       },
       "color": {
         "field": "abs",

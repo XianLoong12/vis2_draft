@@ -2,7 +2,10 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 800,
     "height": 450,
-    "title": "Number of Births by State in Malaysia (Stacked by State)",
+    "title": {
+        "text": "Number of Births by State in Malaysia (Stacked by State)",
+        "fontSize": 24  
+      }, 
     "data": {
         "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
         "format": {"type": "csv"}
@@ -19,12 +22,20 @@
         "x": {
             "field": "date",
             "type": "ordinal",
-            "title": "Year"
+            "title": "Year",
+            "axis": {
+                "labelFontSize": 14, 
+                "titleFontSize": 16  
+              }
         },
         "y": {
             "field": "abs",
             "type": "quantitative",
-            "title": "Number of Births"
+            "title": "Number of Births",
+            "axis": {
+                "labelFontSize": 14, 
+                "titleFontSize": 16  
+              }
         },
         "color": {
             "field": "state",

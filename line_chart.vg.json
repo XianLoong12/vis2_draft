@@ -2,54 +2,67 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 800,
     "height": 450,
-    "title": "Number of Births by State in Malaysia Over Time",
-    "data": {
-        "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
-        "format": {"type": "csv"}
+    "title": {
+        "text": "Number of Births by State in Malaysia Over Time",
+        "fontSize": 24  
+      },    
+      "data": {
+      "url": "https://raw.githubusercontent.com/XianLoong12/week10hw/main/Cleaned_Birth_Data_fm.csv",
+      "format": {"type": "csv"}
     },
     "mark": {
-        "type": "line",
-        "point": true
+      "type": "line",
+      "point": true,
+      "tooltip": {"content": "data"} 
+
     },
     "params": [
-        {
-            "name": "selectedState",
-            "select": {"type": "point", "fields": ["state"]},
-            "bind": "legend"
-        }
+      {
+        "name": "selectedState",
+        "select": {"type": "point", "fields": ["state"]},
+        "bind": "legend"
+      }
     ],
     "encoding": {
-        "x": {
-            "field": "date",
-            "type": "temporal",
-            "title": "Year"
+      "x": {
+        "field": "date",
+        "type": "temporal",
+        "title": "Year",
+        "axis": {
+          "titleFontSize": 16   
+        }
+      },
+      "y": {
+        "field": "abs",
+        "type": "quantitative",
+        "title": "Number of Births",
+        "axis": {
+          "labelFontSize": 14, 
+          "titleFontSize": 16  
+        }
+      },
+      "color": {
+        "field": "state",
+        "type": "nominal",
+        "scale": {
+          "range": [
+            "#88CCEE", "#CC6677", "#DDCC77", "#117733",
+            "#332288", "#AA4499", "#44AA99", "#999933",
+            "#882255", "#661100", "#6699CC", "#888888",
+            "#E69F00", "#56B4E9", "#009E73", "#F0E442"
+          ]
         },
-        "y": {
-            "field": "abs",
-            "type": "quantitative",
-            "title": "Number of Births"
-        },
-        "color": {
-            "field": "state",
-            "type": "nominal",
-            "scale": {
-                "range": [
-                    "#88CCEE", "#CC6677", "#DDCC77", "#117733",
-                    "#332288", "#AA4499", "#44AA99", "#999933",
-                    "#882255", "#661100", "#6699CC", "#888888",
-                    "#E69F00", "#56B4E9", "#009E73", "#F0E442"
-                ]
-            },
-            "legend": {"title": "State"}
-        },
-        "opacity": {
-            "condition": {"param": "selectedState", "value": 1},
-            "value": 0.1
-        },
-        "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "abs", "type": "quantitative", "title": "Number of Births"},
-            {"field": "date", "type": "temporal", "title": "Year"}
-        ]
+        "legend": {"title": "State"}
+      },
+      "opacity": {
+        "condition": {"param": "selectedState", "value": 1},
+        "value": 0.1
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "abs", "type": "quantitative", "title": "Number of Births"},
+        {"field": "date", "type": "temporal", "title": "Year"}
+      ]
     }
-}
+  }
+  

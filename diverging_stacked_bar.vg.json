@@ -1,62 +1,76 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "A Diverging Stacked Bar Chart showing births by sex for each state in Malaysia.",
-    "data": {
-      "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/birth_sex_ethnic_state.csv",
-      "format": {"type": "csv"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A Diverging Stacked Bar Chart showing births by sex for each state in Malaysia.",
+  "title": {
+    "text": "Gender Distribution of Births by State in Malaysia",
+    "fontSize": 24  
+  },  
+  "data": {
+    "url": "https://raw.githubusercontent.com/XianLoong12/vis2_draft/main/birth_sex_ethnic_state.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"filter": "datum.ethnicity == 'overall' && (datum.sex == 'female' || datum.sex == 'male')"},
+    {
+      "calculate": "year(datum.date)",
+      "as": "year"
     },
-    "transform": [
-      {"filter": "datum.ethnicity == 'overall' && (datum.sex == 'female' || datum.sex == 'male')"},
-      {
-        "calculate": "year(datum.date)",
-        "as": "year"
-      },
-      {"filter": "datum.year == yearSelection"},
-      {"calculate": "datum.sex == 'female' ? -datum.abs : datum.abs", "as": "signed_abs"}
-    ],
-    "params": [
-      {
-        "name": "yearSelection",
-        "value": 2000,
-        "bind": {
-          "input": "range",
-          "min": 2000,
-          "max": 2022,
-          "step": 1,
-          "name": "Year: "
-        }
+    {"filter": "datum.year == yearSelection"},
+    {"calculate": "datum.sex == 'female' ? -datum.abs : datum.abs", "as": "signed_abs"}
+  ],
+  "params": [
+    {
+      "name": "yearSelection",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2022,
+        "step": 1,
+        "name": "Year: "
       }
-    ],
-    "width": 300,
-    "height": 400,
-    "mark": "bar",
-    "encoding": {
-      "y": {
-        "field": "state",
-        "type": "nominal",
-        "axis": {"title": "State"}
-      },
-      "x": {
-        "aggregate": "sum",
-        "field": "signed_abs",
-        "title": "Number of Births",
-        "axis": {"format": "s"}
-      },
-      "color": {
-        "field": "sex",
-        "scale": {"range": ["#1f77b4", "#ff7f0e"]},
-        "legend": {"orient": "top", "title": "Sex"}
-      },
-      "tooltip": [
-        {"field": "state", "title": "State"},
-        {"field": "sex", "title": "Sex"},
-        {"field": "abs", "title": "Number of Births"},
-        {"field": "year", "title": "Year"}
-      ]
-    },
-    "config": {
-      "view": {"stroke": null},
-      "axis": {"grid": false}
     }
+  ],
+  "width": 300,
+  "height": 400,
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "axis": {
+        "title": "State",
+        "labelFontSize": 16,  
+        "titleFontSize": 18    
+      }
+    },
+    "x": {
+      "aggregate": "sum",
+      "field": "signed_abs",
+      "title": "Number of Births",
+      "axis": {
+        "format": "s",
+        "labelFontSize": 16,  
+        "titleFontSize": 18    
+      }
+    },
+    "color": {
+      "field": "sex",
+      "scale": {"range": ["#1f77b4", "#ff7f0e"]},
+      "legend": {
+        "orient": "right", 
+        "title": "Sex"
+      }
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "sex", "title": "Sex"},
+      {"field": "abs", "title": "Number of Births"},
+      {"field": "year", "title": "Year"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
   }
-  
+}

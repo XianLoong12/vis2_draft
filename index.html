@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Import Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   <style>
-    /* Base styling for the body */
     body {
-      font-family: 'Poppins', sans-serif; /* Non-standard, modern typeface */
+      font-family: 'Poppins', sans-serif; 
       background-color: #f9f9f9;
       margin: 0;
       padding: 20px;
@@ -22,8 +19,8 @@
       flex-direction: column;
     }
     h2 {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 45px;  
+      font-weight: 700;  
       color: #2b2b2b;
       text-align: center;
       padding: 10px;
@@ -54,16 +51,15 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    /* New grid layout for heatmap and diverging bar chart */
     .side-by-side {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* Two columns for side-by-side layout */
-      gap: 20px; /* Space between the heatmap and diverging bar chart */
+      grid-template-columns: 1fr 1fr; 
+      gap: 20px; 
     }
   </style>
 </head>
 <body>
-  <h2>Data Visualizations Overview</h2>
+  <h2>Visualizing Birth Patterns and Gender Disparities Across Malaysian States</h2>
   
   <p>
     Explore the number of births by state in Malaysia over the years through various visualizations. 
@@ -71,22 +67,43 @@
     accessible viewing experience.
   </p>
   
-  <div class="container">
-    <div id="line_chart" class="visualization"></div>
-    <div id="map" class="visualization"></div>
-    <div id="stacked_bar_chart" class="visualization"></div>
+  <p>
+    This chart visualizes the trends in the number of births over time for each state in Malaysia. This allows us to observe patterns such as increases or decreases in birth rates for different regions. It highlights key trends over time, including any potential growth or declines in specific states.
+  </p>
+  <div id="line_chart" class="visualization"></div>
 
-    <!-- Container for heatmap and diverging bar chart placed side by side -->
-    <div class="side-by-side">
+  <p>
+    This choropleth map illustrates the geographical distribution of births by state. Darker regions indicate higher birth rates, while lighter regions show lower birth rates. This helps us understand regional disparities and population density in terms of birth rates across Malaysia.
+  </p>
+  <div id="map" class="visualization"></div>
+
+  <p>
+    This stacked bar chart breaks down the overall total number of births across states in Malaysia.
+  </p>
+  <div id="stacked_bar_chart" class="visualization"></div>
+
+  <div class="side-by-side">
+    <div>
+      <p>
+        This heatmap shows the number of births per state in Malaysia over time, providing a clear view of which states consistently have higher or lower birth rates across years. The color intensity reflects the number of births, with darker shades indicating higher numbers.
+      </p>
       <div id="heatmap" class="visualization"></div>
+    </div>
+    
+    <div>
+      <p>
+        This diverging bar chart helps compare the number of male and female births by state. Bars that extend in opposite directions indicate the male/female split, giving insight into gender balance in births across states. This visualization helps to highlight any significant gender differences in the birth data.
+      </p>
       <div id="diverging_stacked_bar" class="visualization"></div>
     </div>
-
-    <div id="streamgraph" class="visualization"></div>
   </div>
 
+  <p>
+    This streamgraph shows the overall trends in birth rates by state over time, with areas stacked on top of one another. The flowing shapes represent the changes in birth numbers, allowing us to see how the contribution of each state has shifted or remained consistent over the years.
+  </p>
+  <div id="streamgraph" class="visualization"></div>
+
   <script type="text/javascript">
-    // Paths to your Vega-Lite JSON files
     const spec1 = "line_chart.vg.json";
     const spec2 = "vis2_map.vg.json";
     const spec3 = "stackedbarchart.vg.json";
@@ -94,7 +111,6 @@
     const spec5 = "diverging_stacked_bar.vg.json";
     const spec6 = "streamgraph.vg.json";
 
-    // Embed each visualization in its respective div
     vegaEmbed('#line_chart', spec1).then(result => {}).catch(console.error);
     vegaEmbed('#map', spec2).then(result => {}).catch(console.error);
     vegaEmbed('#stacked_bar_chart', spec3).then(result => {}).catch(console.error);
